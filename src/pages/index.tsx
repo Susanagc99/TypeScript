@@ -28,7 +28,7 @@ const Login = () => {
 
         //Buscar si las credenciales están en users
         const foundUser = users.find(
-            (u) => u.name === user && u.password === password
+            (item) => item.name === user && item.password === password
         );
 
         //Verificar y acceder o mensaje de credenciales inválidas

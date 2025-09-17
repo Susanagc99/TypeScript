@@ -49,7 +49,7 @@ body {
 .login-box h1 {
   font-size: 2rem;
   margin-bottom: 10px;
-  color: #c471ed; /* morado degradado */
+  color: #ffffff; /* morado degradado */
 }
 
 .login-box h3 {
@@ -101,4 +101,31 @@ body {
 .login-box button:hover {
   background-position: right center;
   box-shadow: 0 0 20px rgba(255, 0, 200, 0.7);
+}
+
+/* dashboard styles */
+
+.main-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 80px;
+  min-height: 100vh;
+}
+
+.miButton {
+  border-radius: 12px;
+  padding: 10px 20px;
+  background-color: #aa265d;
+}
+
+.miButton:hover {
+  background-color: #8a0a3fa4;
+  cursor: pointer;
+}
+
+.list {
+  display: flex;
+  gap: 50px;
 }
