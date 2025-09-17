@@ -12,6 +12,10 @@ export default function Login () {
     console.log(result)
     console.log(result2)
 
+    const handleclick = () => {
+        console.log("Se hizo click")
+    }
+
 
     return (
         <main>
@@ -19,6 +23,7 @@ export default function Login () {
             <div className="h2">Ingrese su usuario y contraseña</div>
             <input type="text" />
             <input type="password" />
+            <button onClick={handleclick}>Ingresar</button>
         </main>
     )
 }

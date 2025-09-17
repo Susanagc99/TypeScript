@@ -1,3 +1,6 @@
+import React from "react";
+
+
 export default function Home() {
     class Coder {
         name: string;

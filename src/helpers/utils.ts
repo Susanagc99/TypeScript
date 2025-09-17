@@ -23,3 +23,11 @@ export const multiplicar = (prop1:number, prop2:number) => {
 //     sumar,
 //     multiplicar
 // }
+
+
+
+export const users = [
+    {name: "David", password: "holi123"},
+    {name: "Daniel", password: "zis24"},
+    {name: "Juana", password: "abc321"},
+]

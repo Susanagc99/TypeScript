@@ -1,103 +1,62 @@
-import { useState } from "react";
+import React, { useState } from "react";
+import { useRouter } from "next/router";
+import { users } from "../helpers/utils"; // arreglo con usuarios y contraseñas
 
-export default function Home() {
+const Login = () => {
 
 
-    const [state, setState] = useState(false);
+    const [user, setUser] = useState("");
+    const [password, setPassword] = useState("");
 
-    const handlelick = () => {
-        setState(true)
-    }
+    const router = useRouter();
 
-    class instrument {
-        name: string;
-        color: string;
-        quantity: number;
-        price: number;
-        currency: "COP" | "USD";
+    const handleChangeUser = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setUser(e.target.value);
+    };
 
-        constructor(
-            name: string,
-            color: string,
-            quantity: number,
-            price: number,
-            currency: "COP" | "USD"
-        ) {
-            this.name = name;
-            this.color = color;
-            this.quantity = quantity;
-            this.price = price;
-            this.currency = currency;
+    const handleChangePassword = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setPassword(e.target.value);
+    };
+
+
+    const handleClick = () => {
+
+        //Validación campos vacio
+        if (user == "" || password == "") {
+            alert("Debe ingresar usuario y contraseña")
         }
 
-        tocar() {
-            return `El instrumento "${this.name}" está sonando`;
-        }
+        //Buscar si las credenciales están en users
+        const foundUser = users.find(
+            (u) => u.name === user && u.password === password
+        );
 
-        romper() {
-            return `oh noo! Las ${this.quantity} unidades de ${this.name} se rompieron`;
-        }
-    }
-
-    class strings extends instrument {
-        numberStrings:number;
-        brand:string;
-    
-
-        constructor(
-            name: string,
-            color: string,
-            quantity: number,
-            price: number,
-            currency: "COP" | "USD",
-            numberStrings:number,
-            brand:string
-        ){
-            super(name,color,quantity,price,currency)
-            this.numberStrings = numberStrings;
-            this.brand = brand;
-        }
-
-        showInstrumentstrings() {
-            return `El ${this.name} de color ${this.color} tiene ${this.numberStrings} cuerdas`
+        //Verificar y acceder o mensaje de credenciales inválidas
+        if (foundUser) {
+            console.log("Login Exitoso");
+            router.push("/dashboard");
+        } else {
+            console.log("Credenciales incorrectas");
+            alert("Usuario o contraseña inválidos")
         }
     }
-
-  
-    const instrument1 = new instrument("guitarra", "negro", 50, 1500, "USD");
-    const instrument2 = new instrument("ukelele", "blanco", 28, 90000, "COP");
-
-    console.log(instrument1.tocar());
-    console.log(
-        `La ${instrument1.name} tiene un valor de ${instrument1.price} ${instrument1.currency}`
-    );
-    console.log(
-        `El ${instrument2.name} este tiene un valor de ${instrument2.price} ${instrument2.currency}`
-    );
-    console.log(instrument2.romper());
-
-    const strings1 = new strings("violin", "blanco", 13, 500, "USD", 4, "felix")
-
-    console.log(strings1.name)
-    console.log(strings1.showInstrumentstrings())
 
     return (
-        <main>
-            <div>{instrument1.tocar()}</div>
-            <div>{instrument1.romper()}</div>
-            <button onClick={handlelick} className="bg-amber-50 miButton">Instruments</button>
-            <div>
-                {state && (
-                    <ul className="list">
-                        <li className="list-item">
-                            <div>Instrumento: {instrument1.name}</div>
-                            <div>Color: {instrument1.color}</div>
-                            <div>Quantity: {instrument1.quantity}</div>
-                        </li>
-                    </ul>
-                )}
+        <div className="login-container">
+            <div className="login-box">
+                <h1>Mi app</h1>
+
+                <label>Usuario</label>
+                <input value={user} onChange={handleChangeUser} type="text" />
+
+                <label>Contraseña</label>
+                <input value={password} onChange={handleChangePassword} type="password" />
+
+                <button onClick={handleClick}>Ingresar</button>
             </div>
-        </main>
-    );
+        </div>
+    )
+
 }
 
+export default Login;
