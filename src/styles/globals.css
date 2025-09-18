@@ -108,24 +108,7 @@ body {
 .main-container {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 80px;
+  gap: 20px;
   min-height: 100vh;
-}
-
-.miButton {
-  border-radius: 12px;
-  padding: 10px 20px;
-  background-color: #aa265d;
-}
-
-.miButton:hover {
-  background-color: #8a0a3fa4;
-  cursor: pointer;
-}
-
-.list {
-  display: flex;
-  gap: 50px;
+  margin: 10%;
 }
