@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useRouter } from "next/router";
 import { users } from "../helpers/utils"; // arreglo con usuarios y contraseñas
+import { ToastContainer, toast } from 'react-toastify';
 
 const Login = () => {
 
@@ -21,10 +22,20 @@ const Login = () => {
 
     const handleClick = () => {
 
-        //Validación campos vacio
-        if (user == "" || password == "") {
-            alert("Debe ingresar usuario y contraseña")
-        }
+
+        // //Validación campos vacio
+        // if (user == "" || password == "") {
+        //     toast.warn('Debe ingresar usuario y contraseña', {
+        //         position: "top-center",
+        //         autoClose: 5000,
+        //         hideProgressBar: false,
+        //         closeOnClick: false,
+        //         pauseOnHover: true,
+        //         draggable: true,
+        //         progress: undefined,
+        //         theme: "dark"
+        //         });
+        // }
 
         //Buscar si las credenciales están en users
         const foundUser = users.find(
@@ -35,10 +46,21 @@ const Login = () => {
         if (foundUser) {
             console.log("Login Exitoso");
             router.push("/dashboard");
+
         } else {
             console.log("Credenciales incorrectas");
-            alert("Usuario o contraseña inválidos")
+            toast.warn('Debe ingresar usuario y contraseña', {
+                position: "top-center",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: false,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "dark"
+                });
         }
+
     }
 
     return (
@@ -52,7 +74,8 @@ const Login = () => {
                 <label>Contraseña</label>
                 <input value={password} onChange={handleChangePassword} type="password" />
 
-                <button onClick={handleClick}>Ingresar</button>
+                <button className="login-button" onClick={handleClick}>Ingresar</button>
+                <ToastContainer/>
             </div>
         </div>
     )
