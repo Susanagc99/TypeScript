@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useRouter } from "next/router";
-import { users } from "../helpers/utils"; // arreglo con usuarios y contraseñas
-import { ToastContainer, toast } from 'react-toastify';
+import { notifications, users } from "../helpers/utils"; // arreglo con usuarios y contraseñas
+import { ToastContainer } from 'react-toastify';
 
 const Login = () => {
 
@@ -23,19 +23,11 @@ const Login = () => {
     const handleClick = () => {
 
 
-        // //Validación campos vacio
-        // if (user == "" || password == "") {
-        //     toast.warn('Debe ingresar usuario y contraseña', {
-        //         position: "top-center",
-        //         autoClose: 5000,
-        //         hideProgressBar: false,
-        //         closeOnClick: false,
-        //         pauseOnHover: true,
-        //         draggable: true,
-        //         progress: undefined,
-        //         theme: "dark"
-        //         });
-        // }
+        //Validación campos vacio
+        if (user == "" || password == "") {
+            notifications("Debe ingresar usuario y contraseña","warn");
+            return;
+        }
 
         //Buscar si las credenciales están en users
         const foundUser = users.find(
@@ -44,21 +36,14 @@ const Login = () => {
 
         //Verificar y acceder o mensaje de credenciales inválidas
         if (foundUser) {
-            console.log("Login Exitoso");
-            router.push("/dashboard");
+            console.log("Login exitoso")
+            notifications("Inicio de sesión exitoso","success")
+            setTimeout(() => {
+                router.push("/dashboard");
+              }, 1500); // 1.5 segundos para que se vea el toast
 
         } else {
-            console.log("Credenciales incorrectas");
-            toast.warn('Debe ingresar usuario y contraseña', {
-                position: "top-center",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: false,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "dark"
-                });
+            notifications("Credenciales incorrectas","error");
         }
 
     }
@@ -75,7 +60,7 @@ const Login = () => {
                 <input value={password} onChange={handleChangePassword} type="password" />
 
                 <button className="login-button" onClick={handleClick}>Ingresar</button>
-                <ToastContainer/>
+                <ToastContainer />
             </div>
         </div>
     )
