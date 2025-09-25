@@ -1,6 +1,6 @@
 // import { IconName } from "react-icons/cg";
 
-import { Card } from '../../components/card/Card';
+import { Card } from '../../../components/card/Card';
 import React from "react";
 
 const Newview = () => {
