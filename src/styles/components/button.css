@@ -1,0 +1,24 @@
+.components_button {
+    padding: 8px;
+    border-radius: 14px;
+    background-color: rgba(15, 126, 120, 0.932);
+    color: rgb(255, 255, 255);
+    border: 1px solid rgb(255, 255, 255);
+    display: flex;
+    gap: 5px;
+}
+
+.components_button:hover{
+    cursor: pointer;
+    opacity: 0.5;
+}
+
+.components_button--disabled{
+    background-color: white;
+    color: rgb(133, 133, 133);
+    opacity: .8;
+}
+
+.components_button--disabled:hover{
+    cursor: auto;
+}

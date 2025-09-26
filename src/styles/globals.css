@@ -1,6 +1,7 @@
 @import "tailwindcss";
 
 @import "./components/card.css";
+@import "./components/button.css";
 
 :root {
   --background: #ffffff;
@@ -114,3 +115,4 @@ body {
   min-height: 100vh;
   margin: 10%;
 }
+

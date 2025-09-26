@@ -23,7 +23,7 @@ export default function Home () {
 
                     <MiButton text={"Guardar"} icon={"S"} />
                     <MiButton text={"Cancelar"} icon={"X"} />
-                    <MiButton text={"Siguiente"} icon={<CgArrowRightR />} loading={loader}/>
+                    <MiButton text={"Siguiente"} icon={<CgArrowRightR />} loading={loader} click={handleClick} />
                 </div>
             </div>
             <ToastContainer/>

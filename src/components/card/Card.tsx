@@ -19,7 +19,7 @@ export const Card = ({text, icon, color}: CardProps) => {
 
         <div className='card_leftSide--link'>
           <div className='card_leftSide--icon'>{icon}</div>
-          <div className='card_leftSide--text'>{text}</div>
+          <div className='card_leftSide--text'></div>
         </div>
 
       </div>

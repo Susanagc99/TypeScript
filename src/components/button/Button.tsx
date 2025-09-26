@@ -6,20 +6,24 @@ interface MiButtonProps {
     icon: JSX.Element | string;
     disable?: boolean;
     loading?: boolean;
+    click?: () => void;
 }
 
-export const MiButton = ({text, icon, disable= false }: MiButtonProps) => {
-    const handleClick = () => {
-        console.log("Se hizo click en el botón del componente");
-    };
-
+export const MiButton = ({
+    text, 
+    icon, 
+    disable= false,
+    loading= false,
+    click,
+}: MiButtonProps) => {
     return (
         <button
-            onClick={handleClick}
-            className={`components_button ${ disable ? "components_button-disable" : ""}`}
-            disabled={disable}
+            onClick={click}
+            className={`components_button 
+                ${ disable ? "components_button-disable" : ""}`}
+            disabled={disable || loading}
         >
-            <div>{text}</div>
+            <div>{loading ? "Cargando..." : text}</div>
             <div>{icon}</div>
         </button>
     )
