@@ -58,5 +58,6 @@ const Newview = () => {
             </div>
         </div>
     );
+};
 
-    export default Newview 
+    export default Newview; 
