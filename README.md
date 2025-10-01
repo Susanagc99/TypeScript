@@ -15,26 +15,6 @@ src/
 ├── pages/            # Páginas de Next.js organizadas por semanas
 ├── services/         # Servicios para consumir APIs
 ├── styles/           # Archivos CSS para los estilos
-
-
-Collecting workspace information```markdown
-# Proyecto: Ejercicios de TypeScript + Next.js
-
-Este repositorio contiene una colección de ejercicios prácticos realizados durante las clases de la **Ruta Avanzada de TypeScript + Next.js** en **Riwi**. Cada ejercicio aborda conceptos clave de TypeScript, React y Next.js, organizados en diferentes carpetas según la temática y la semana de trabajo.
-
----
-
-## Estructura del Proyecto
-
-```txt
-src/
-├── components/       # Componentes reutilizables como botones y tarjetas
-├── database/         # Modelos de base de datos con Mongoose
-├── helpers/          # Funciones auxiliares y utilidades
-├── lib/              # Conexión a la base de datos
-├── pages/            # Páginas de Next.js organizadas por semanas
-├── services/         # Servicios para consumir APIs
-├── styles/           # Archivos CSS para los estilos
 ```
 
 ---
