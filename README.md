@@ -1,40 +1,108 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/pages/api-reference/create-next-app).
+# Proyecto: Ejercicios de TypeScript + Next.js
 
-## Getting Started
+Este repositorio contiene una colección de ejercicios prácticos realizados durante las clases de la **Ruta Avanzada de TypeScript + Next.js** en **Riwi**. Cada ejercicio aborda conceptos clave de TypeScript, React y Next.js, organizados en diferentes carpetas según la temática y la semana de trabajo.
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## Estructura del Proyecto
+
+```txt
+src/
+├── components/       # Componentes reutilizables como botones y tarjetas
+├── database/         # Modelos de base de datos con Mongoose
+├── helpers/          # Funciones auxiliares y utilidades
+├── lib/              # Conexión a la base de datos
+├── pages/            # Páginas de Next.js organizadas por semanas
+├── services/         # Servicios para consumir APIs
+├── styles/           # Archivos CSS para los estilos
+
+
+Collecting workspace information```markdown
+# Proyecto: Ejercicios de TypeScript + Next.js
+
+Este repositorio contiene una colección de ejercicios prácticos realizados durante las clases de la **Ruta Avanzada de TypeScript + Next.js** en **Riwi**. Cada ejercicio aborda conceptos clave de TypeScript, React y Next.js, organizados en diferentes carpetas según la temática y la semana de trabajo.
+
+---
+
+## Estructura del Proyecto
+
+```txt
+src/
+├── components/       # Componentes reutilizables como botones y tarjetas
+├── database/         # Modelos de base de datos con Mongoose
+├── helpers/          # Funciones auxiliares y utilidades
+├── lib/              # Conexión a la base de datos
+├── pages/            # Páginas de Next.js organizadas por semanas
+├── services/         # Servicios para consumir APIs
+├── styles/           # Archivos CSS para los estilos
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+## Ejercicios por Semana
 
-[API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+### Semana 2: Fundamentos de TypeScript y React
+- **`examplePOO`**: Ejemplo de Programación Orientada a Objetos (POO) con clases e interfaces.
+- **`operModular`**: Uso de funciones auxiliares (`sumar`, `multiplicar`) importadas desde un archivo de utilidades.
+- **`POOmyex`**: Ejercicio avanzado de POO con herencia y métodos personalizados.
+- **`taller-impor-export`**: Taller práctico para trabajar con **interfaces**, **utils** y **componentes React**. Incluye:
+  - Definición de tipos (`Product`, `Price`).
+  - Utilidades de texto (`capitalize`, `truncate`, `formatPrice`).
+  - Listado de productos renderizado con `.map`.
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) instead of React pages.
+### Semana 3: Componentes Reutilizables y Genéricos
+- **`testbutton`**: Creación de un botón reutilizable con estados (`loading`, `disabled`) y soporte para íconos.
+- **`cards`**: Implementación de un componente `Card` que muestra información dinámica, incluyendo imágenes y descripciones.
+- **`genericos`**: Uso de **genéricos** en funciones para manipular arrays (obtener el primer/último elemento, invertir el array, etc.).
 
-This project uses [`next/font`](https://nextjs.org/docs/pages/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+## Funcionalidades Adicionales
+- **Conexión a Base de Datos**: Uso de Mongoose para definir y gestionar modelos (`properties`).
+- **API REST**: Rutas API creadas con Next.js para realizar operaciones CRUD sobre propiedades.
+- **Notificaciones**: Uso de `react-toastify` para mostrar mensajes de éxito, error y advertencia en la interfaz.
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn-pages-router) - an interactive Next.js tutorial.
+## Tecnologías Utilizadas
+- **TypeScript**: Tipado estático para mayor seguridad y escalabilidad.
+- **Next.js**: Framework para aplicaciones React con soporte para SSR y rutas API.
+- **React**: Biblioteca para construir interfaces de usuario.
+- **Mongoose**: ODM para trabajar con MongoDB.
+- **TailwindCSS**: Framework de estilos para diseño responsivo y moderno.
+- **React Icons**: Biblioteca de íconos para enriquecer la interfaz.
+- **React Toastify**: Notificaciones visuales para mejorar la experiencia del usuario.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+## Cómo Ejecutar el Proyecto
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+1. Instalar dependencias:
+   ```bash
+   npm install
+   ```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/pages/building-your-application/deploying) for more details.
+2. Configurar las variables de entorno en un archivo `.env`:
+   ```env
+   MONGODB_URI=<tu_conexion_a_mongodb>
+   ```
+
+3. Ejecutar el servidor de desarrollo:
+   ```bash
+   npm run dev
+   ```
+
+4. Abrir [http://localhost:3000](http://localhost:3000) en el navegador.
+
+---
+
+## Retos Opcionales
+- Crear un filtro de productos activos en el taller de la semana 2.
+- Implementar un componente `Badge` para mostrar estados en las tarjetas.
+- Agregar pruebas unitarias para las funciones genéricas y utilidades.
+
+---
+
+## Créditos
+Este proyecto fue desarrollado como parte de las clases de **Riwi**, bajo la guía de instructores expertos en TypeScript y Next.js.
+```

@@ -22,10 +22,10 @@ export default async function handler(
 
     try {
 
+        dbConnection()
+
         if (req.method === "GET") {
-            dbConnection()
             const data = await Properties.find()
-            console.log(data)
 
             res.status(200).json({
                 ok: true,
@@ -34,16 +34,59 @@ export default async function handler(
         }
 
         else if (req.method === 'POST') {
-            res.status(200).json({ message: "funciona el post" });
+
+            const { name, value, img } = req.body
+            const newProperty = new Properties({
+                name, value, img
+            })
+
+            const savedProperty = await newProperty.save()
+
+            console.log(savedProperty)
+
+            return res.status(201).json({
+                ok: true,
+                message: "property saved",
+                createdId: savedProperty._id
+            });
         }
 
         else if (req.method === 'PUT') {
-            res.status(200).json({ message: "funciona el put" });
+
+            const { id, name, value, img } = req.body
+
+            try {
+                const propertyUpdate = await Properties.findByIdAndUpdate(
+                    id, {name, value, img}, { new: true });
+                console.log(propertyUpdate);
+            } catch {
+                res.status(400)
+            }
+
+            res
+                .status(200)
+                .json({
+                    ok: true,
+                    message: "Property updated",
+                    updateId: id,
+                });
         }
 
-        else if (req.method === 'DELETE') {
-            res.status(200).json({ message: "funciona el delete" });
+        else if (req.method === "DELETE") {
+
+            const { id } = req.query;
+
+            const deletedProperty = await Properties.findByIdAndDelete(id);
+
+            console.log(deletedProperty)
+
+            return res.status(200).json({
+                ok: true,
+                message: "Property deleted",
+                deletedId: id,
+            })
         }
+
 
         else {
             res.status(500).json({ message: "método no permitido" })
