@@ -85,4 +85,3 @@ src/
 
 ## Créditos
 Este proyecto fue desarrollado como parte de las clases de **Riwi**, bajo la guía de instructores expertos en TypeScript y Next.js.
-```
