@@ -45,17 +45,18 @@ const Newview = () => {
                 />
             </div>
             <div className="flex gap-2">
-            {aves.map((ave, index) => (
-            <div key={index}>
-                <Card
-                title={ave.title}
-                color={ave.color}
-                imageUrl={ave.imageUrl}
-                description={ave.description}
-                />
+                {aves.map((ave, index) => (
+                    <div key={index}>
+                        <Card
+                            title={ave.title}
+                            color={ave.color}
+                            imageUrl={ave.imageUrl}
+                            description={ave.description}
+                        />
+                    </div>
+                ))}               
+            </div>
         </div>
+    );
 
-    ),
-}
-
-export default Newview
+    export default Newview 
