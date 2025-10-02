@@ -3,11 +3,6 @@ import type { NextApiRequest, NextApiResponse } from "next";
 import dbConnection from "../../lib/dbconnection";
 import Properties from "../../database/models/properties";
 
-
-type Data = {
-    message: string;
-};
-
 interface Property {
     _id: string;
     name: string;
@@ -15,12 +10,33 @@ interface Property {
     img?: string;
 }
 
+type GetResponse = { ok: true; data: Property[] };
+type PostResponse = { ok: true; message: string; createdId?: string };
+type PutResponse = { ok: true; message: string; updatedId?: string };
+type DeleteResponse = { ok: true; message: string; deletedId?: string };
+type ErrorResponse = { ok: false; error: string };
+
+type ResponseBody =
+    | GetResponse
+    | PostResponse
+    | PutResponse
+    | DeleteResponse
+    | ErrorResponse;
+
+const allowed = ["GET", "POST", "PUT", "DELETE"];
+
+
 export default async function handler(
     req: NextApiRequest,
-    res: NextApiResponse<Data>,
+    res: NextApiResponse<ResponseBody>,
 ) {
 
     try {
+
+        if (!allowed.includes(req.method!)) {
+            res.setHeader("Allow", allowed);
+            return res.status(405).end(`Method ${req.method} Not Allowed`);
+        }
 
         dbConnection()
 
@@ -33,7 +49,7 @@ export default async function handler(
             });
         }
 
-        else if (req.method === 'POST') {
+        if (req.method === 'POST') {
 
             const { name, value, img } = req.body
             const newProperty = new Properties({
@@ -51,13 +67,13 @@ export default async function handler(
             });
         }
 
-        else if (req.method === 'PUT') {
+        if (req.method === 'PUT') {
 
             const { id, name, value, img } = req.body
 
             try {
                 const propertyUpdate = await Properties.findByIdAndUpdate(
-                    id, {name, value, img}, { new: true });
+                    id, { name, value, img }, { new: true });
                 console.log(propertyUpdate);
             } catch {
                 res.status(400)
@@ -65,34 +81,24 @@ export default async function handler(
 
             res
                 .status(200)
-                .json({
-                    ok: true,
-                    message: "Property updated",
-                    updateId: id,
-                });
+                .json({ ok: true, message: "Property updated", updatedId: id });
         }
 
-        else if (req.method === "DELETE") {
-
+        if (req.method === "DELETE") {
             const { id } = req.query;
+            console.log(id);
 
-            const deletedProperty = await Properties.findByIdAndDelete(id);
+            await Properties.findByIdAndDelete(id);
 
-            console.log(deletedProperty)
-
-            return res.status(200).json({
-                ok: true,
-                message: "Property deleted",
-                deletedId: id,
-            })
-        }
-
-
-        else {
-            res.status(500).json({ message: "método no permitido" })
+            res
+                .status(200)
+                .json({ ok: true, message: "property deleted", deletedId: `${id}`});
         }
     } catch (err) {
-        res.status(500).json({ message: "fallo", error: err })
+        console.log(err);
+        res.status(500).json({ok: false, error: "Internal server error"});
     }
-};
+}
+
+
 
