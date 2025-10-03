@@ -49,6 +49,7 @@ export default async function handler(
             });
         }
 
+        
         if (req.method === 'POST') {
 
             const { name, value, img } = req.body
@@ -67,22 +68,51 @@ export default async function handler(
             });
         }
 
-        if (req.method === 'PUT') {
 
+        if (req.method === 'PUT') {
             const { id, name, value, img } = req.body
+
+            //validación del id requerido
+            if (!id) {
+                return res.status(400).json({ 
+                    ok: false, 
+                    error: "ID is required for update" 
+                });
+            }
 
             try {
                 const propertyUpdate = await Properties.findByIdAndUpdate(
-                    id, { name, value, img }, { new: true });
-                console.log(propertyUpdate);
-            } catch {
-                res.status(400)
-            }
+                    id, 
+                    { name, value, img }, 
+                    { new: true, runValidators: true }
+                );
 
-            res
-                .status(200)
-                .json({ ok: true, message: "Property updated", updatedId: id });
+                //runvalidator para validar los datos
+                if (!propertyUpdate) {
+                    return res.status(404).json({ 
+                        ok: false, 
+                        error: "Property not found" 
+                    });
+                }
+
+                console.log(propertyUpdate);
+                
+                return res
+                    .status(200)
+                    .json({ 
+                        ok: true, 
+                        message: "Property updated", 
+                        updatedId: id 
+                    });
+            } catch (error) {
+                console.error("Update error:", error);
+                return res.status(400).json({ 
+                    ok: false, 
+                    error: "Failed to update property" 
+                });
+            }
         }
+
 
         if (req.method === "DELETE") {
             const { id } = req.query;
@@ -92,11 +122,11 @@ export default async function handler(
 
             res
                 .status(200)
-                .json({ ok: true, message: "property deleted", deletedId: `${id}`});
+                .json({ ok: true, message: "property deleted", deletedId: `${id}` });
         }
     } catch (err) {
         console.log(err);
-        res.status(500).json({ok: false, error: "Internal server error"});
+        res.status(500).json({ ok: false, error: "Internal server error" });
     }
 }
 
