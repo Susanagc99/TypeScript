@@ -1,70 +1,78 @@
-import React, { useState } from "react";
+import React from "react"
+import { ToastContainer } from "react-toastify";
+import { Button, Input, Switch } from "@heroui/react";
+import { useContext, useState } from "react";
 import { useRouter } from "next/router";
-import { notifications, users } from "../helpers/utils"; // arreglo con usuarios y contraseñas
-import { ToastContainer } from 'react-toastify';
+import { MyContext } from "../context/Context";
+import { notifications } from "../helpers/utils";
 
-const Login = () => {
+const userLogueado = {
+    name: "david",
+    role: "admin",
+    isActive: true,
+    date: 24 / 12 / 2025,
+}
 
-
+export default function Home() {
     const [user, setUser] = useState("");
-    const [password, setPassword] = useState("");
+    const [pass, setPass] = useState("");
+
+    const { setUserLogged, setIsActive, isActive, isSelected, setIsSelected } = useContext(MyContext);
 
     const router = useRouter();
 
-    const handleChangeUser = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setUser(e.target.value);
-    };
-
-    const handleChangePassword = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setPassword(e.target.value);
-    };
-
-
-    const handleClick = () => {
-
-
-        //Validación campos vacio
-        if (user == "" || password == "") {
-            notifications("Debe ingresar usuario y contraseña","warn");
-            return;
+    const handleClick = async () => {
+        if (user === "david" && pass === "123456") {
+            setUserLogged(userLogueado);
+            notifications("Login exitoso", "success")
+            router.push("/dashboard");
         }
-
-        //Buscar si las credenciales están en users
-        const foundUser = users.find(
-            (item) => item.name === user && item.password === password
-        );
-
-        //Verificar y acceder o mensaje de credenciales inválidas
-        if (foundUser) {
-            console.log("Login exitoso")
-            notifications("Inicio de sesión exitoso","success")
-            setTimeout(() => {
-                router.push("/dashboard");
-              }, 1500); // 1.5 segundos para que se vea el toast
-
-        } else {
-            notifications("Credenciales incorrectas","error");
-        }
-
     }
 
     return (
         <div className="login-container">
-            <div className="login-box">
-                <h1>Mi app</h1>
+            <div className="login-box2">
+                <div>Login</div>
 
-                <label>Usuario</label>
-                <input value={user} onChange={handleChangeUser} type="text" />
+                <label></label>
+                <Input
+                    label="User"
+                    placeholder="Enter your user"
+                    type="text"
+                    onChange={(e) => {
+                        setUser(e.target.value);
+                    }}
+                />
 
-                <label>Contraseña</label>
-                <input value={password} onChange={handleChangePassword} type="password" />
+                <label></label>
+                <Input
+                    label="Password"
+                    placeholder="Enter your password"
+                    type="password"
+                    onChange={(e) => {
+                        setPass(e.target.value);
+                    }}
+                />
 
-                <button className="login-button" onClick={handleClick}>Ingresar</button>
-                <ToastContainer />
+                <Button onPress={handleClick} className="mt-7" color="primary">
+                    Login
+                </Button>
+
+                {/* <Button
+                    onPress={() => {
+                        setIsActive(!isActive);
+                    }}
+                    className="mt-7"
+                    color="primary"
+                >
+                    Login
+                </Button> */}
+
+                <Switch isSelected={isSelected} onValueChange={setIsSelected}>
+                    Airplane mode
+                </Switch>
+
             </div>
         </div>
     )
-
 }
-
-export default Login;

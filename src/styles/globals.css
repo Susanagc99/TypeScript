@@ -1,7 +1,14 @@
 @import "tailwindcss";
 
+@plugin './hero.ts';
+/* Note: You may need to change the path to fit your project structure */
+@source '../../node_modules/@heroui/theme/dist/**/*.{js,ts,jsx,tsx}';
+@custom-variant dark (&:is(.dark *));
+
 @import "./components/card.css";
 @import "./components/button.css";
+
+
 
 :root {
   --background: #ffffff;
@@ -106,6 +113,17 @@ body {
   box-shadow: 0 0 20px rgba(255, 0, 200, 0.7);
 }
 
+.login-box2{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: black;
+  background-color: #ededed;
+  gap: 11px;
+  padding: 18px;
+  border-radius: 8px;
+}
+
 /* dashboard styles */
 
 .main-container {
@@ -114,5 +132,16 @@ body {
   gap: 20px;
   min-height: 100vh;
   margin: 10%;
+}
+
+.dash-container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 60px;
+  background-color: #ededed;
+  gap: 10px;
+  color: black;
+  
 }
 
