@@ -22,7 +22,7 @@ export default function Home() {
     const router = useRouter();
 
     const handleClick = async () => {
-        if (user === "david" && pass === "123456") {
+        if (user === "david" && pass === "12345") {
             setUserLogged(userLogueado);
             notifications("Login exitoso", "success")
             router.push("/dashboard");
@@ -32,7 +32,7 @@ export default function Home() {
     return (
         <div className="login-container">
             <div className="login-box2">
-                <div>Login</div>
+                <div className="text-2xl font-semibold">Login</div>
 
                 <label></label>
                 <Input
@@ -54,7 +54,11 @@ export default function Home() {
                     }}
                 />
 
-                <Button onPress={handleClick} className="mt-7" color="primary">
+
+                <Button onPress={handleClick}
+                    className="bg-linear-to-tr from-pink-500 to-yellow-500 text-white shadow-lg"
+                    radius="full"
+                >
                     Login
                 </Button>
 
@@ -68,9 +72,11 @@ export default function Home() {
                     Login
                 </Button> */}
 
-                <Switch isSelected={isSelected} onValueChange={setIsSelected}>
+                <Switch color="danger"
+                    isSelected={isSelected} onValueChange={setIsSelected}>
                     Airplane mode
                 </Switch>
+
 
             </div>
         </div>

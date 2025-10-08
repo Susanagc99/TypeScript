@@ -33,7 +33,7 @@ export const users = [
 export const notifications = (text: string, type: "success"|"error"|"warn") => {
     if (type === "success") {
         toast.success(text, {
-            position: "top-center",
+            position: "bottom-center",
             autoClose: 5000,
             hideProgressBar: false,
             closeOnClick: false,
@@ -46,7 +46,7 @@ export const notifications = (text: string, type: "success"|"error"|"warn") => {
 
     if (type === "error") {
         toast.error(text, {
-            position: "top-center",
+            position: "bottom-center",
             autoClose: 5000,
             hideProgressBar: false,
             closeOnClick: false,
@@ -59,7 +59,7 @@ export const notifications = (text: string, type: "success"|"error"|"warn") => {
 
     if (type === "warn") {
         toast.warn(text, {
-            position: "top-center",
+            position: "bottom-center",
             autoClose: 5000,
             hideProgressBar: false,
             closeOnClick: false,
