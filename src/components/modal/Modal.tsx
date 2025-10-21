@@ -1,3 +1,5 @@
+import { Button } from "@heroui/react";
+import { XCircleIcon } from "@heroicons/react/24/outline";
 import React from "react";
 
 interface ModalProps {
@@ -7,43 +9,60 @@ interface ModalProps {
     desc?: string;
     onCancel?: () => void;
     OnSave?: () => void;
+    isOpen: boolean;
 }
 
 
-export const Modal = ({ title, onClose, children, desc, onCancel, OnSave }: ModalProps) => {
-    
-    
-    const handleClose = () => {
-        onClose();
-    };
-    
+export const Modal = ({
+    title,
+    onClose,
+    children,
+    desc,
+    onCancel,
+    OnSave,
+    isOpen
+}: ModalProps) => {
+
+
+    // const handleClose = () => {
+    //     onClose();
+    // };
+
+
+    if (!isOpen) return null;
+
     return (
         <>
-        <div className="modalContainer">
-            <header className="modalContainer_header">
-                <h2>{title}</h2>
-                <div>
-                    <button onClick={handleClose}>
-                        X
-                    </button>
-                </div>
-            </header>
+            {/* {isOpen && ( */}
 
-            <div className="modalContainer_children">
-                {children}
-                contenido del children
+            <div className="modalContainer_overlay">
+                <div className="modalContainer">
+                    <header className="modalContainer_header">
+                        <h2>{title}</h2>
+                        <div>
+                            <XCircleIcon 
+                                className="w-8 h-8 close-button cursor-pointer" 
+                                onClick={onClose}
+                            />
+                        </div>
+                    </header>
+
+                    <div className="modalContainer_children">
+                        {children}
+                    </div>
+
+                    <footer className="modalContainer_footer">
+                        <div>
+                            {desc}
+                        </div>
+                        <div className="modalContainer_buttons">
+                            <Button color="default" radius="lg" variant="ghost" onClick={onCancel}>Cancel</Button>
+                            <Button color="default" radius="lg" variant="ghost" onClick={OnSave}>Save</Button>
+                        </div>
+                    </footer>
+                </div>
             </div>
-
-            <footer className="modalContainer_footer">
-                <div>
-                    {desc}
-                </div>
-                <div className="modalContainer_buttons">
-                    <button onClick={onCancel}>Cancel</button>
-                    <button onClick={OnSave}>Save</button>
-                </div>
-            </footer>
-        </div>
+            {/* )} */}
         </>
-    )
-}
+    );
+};

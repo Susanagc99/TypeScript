@@ -5,9 +5,10 @@
     transform: translate(-50%, -50%);
     height: 500px;
     width: 500px;
-    background-color: #2cbb9c;
+    background-color: #d1174fd8;
+    color: white;
     border-radius: 20px;
-    padding: 20px;
+    padding: 25px;
 }
 
 .modalContainer_header {
@@ -19,8 +20,9 @@
 .modalContainer_footer {
     display: flex;
     justify-content: space-between;
-    bottom: 20px;
+    bottom: 40px;
     position: fixed;
+    align-items: center
 }
 
 .modalContainer_buttons {
@@ -28,4 +30,8 @@
     gap: 20px;
     position: fixed;
     right: 20px;
+}
+
+.close-button:hover {
+        opacity: 0.6;
 }
