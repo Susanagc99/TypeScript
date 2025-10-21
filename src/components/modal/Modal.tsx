@@ -1,6 +1,7 @@
 import { Button } from "@heroui/react";
 import { XCircleIcon } from "@heroicons/react/24/outline";
-import React from "react";
+import { XCircleIcon as XCircleIconSolid } from "@heroicons/react/24/solid";
+import React, { useState } from "react";
 
 interface ModalProps {
     title: string;
@@ -22,7 +23,8 @@ export const Modal = ({
     OnSave,
     isOpen
 }: ModalProps) => {
-
+    
+    const [isHovered, setIsHovered] = useState(false);
 
     // const handleClose = () => {
     //     onClose();
@@ -40,10 +42,19 @@ export const Modal = ({
                     <header className="modalContainer_header">
                         <h2>{title}</h2>
                         <div>
-                            <XCircleIcon 
-                                className="w-8 h-8 close-button cursor-pointer" 
-                                onClick={onClose}
-                            />
+                            {isHovered ? (
+                                <XCircleIconSolid 
+                                    className="w-8 h-8 close-button cursor-pointer" 
+                                    onClick={onClose}
+                                    onMouseLeave={() => setIsHovered(false)}
+                                />
+                            ) : (
+                                <XCircleIcon 
+                                    className="w-8 h-8 close-button cursor-pointer" 
+                                    onClick={onClose}
+                                    onMouseEnter={() => setIsHovered(true)}
+                                />
+                            )}
                         </div>
                     </header>
 
