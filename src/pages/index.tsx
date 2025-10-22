@@ -76,6 +76,7 @@ export default function Home() {
                     isSelected={isSelected} onValueChange={setIsSelected}>
                     Airplane mode
                 </Switch>
+                <ToastContainer />
 
 
             </div>

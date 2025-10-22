@@ -1,7 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import { CardHeader, CardBody, Card, Button } from "@heroui/react";
-import { products } from "@/constant/products";
+import { products } from "../../constant/products";
 
 const Products = () => {
 
